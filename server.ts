@@ -402,17 +402,20 @@ app.post('/api/auth/login', (req, res) => {
   }
 
   const cleanPass = password.toString().trim().toLowerCase();
+  const isDefaultHash = !user.password_hash || user.password_hash === DEFAULT_ADMIN_PASS_HASH;
   const isPasswordCorrect = 
-    cleanPass === 'toys' ||
-    cleanPass === 'toysn' ||
-    cleanPass === 'toys2025' ||
-    cleanPass === 'toys2026' ||
-    password === 'joyouswoods2025' || 
-    password === 'joyouswoods2026' || 
-    (user && user.password_hash === hashed);
+    (user && user.password_hash === hashed) ||
+    (isDefaultHash && (
+      cleanPass === 'toys' ||
+      cleanPass === 'toysn' ||
+      cleanPass === 'toys2025' ||
+      cleanPass === 'toys2026' ||
+      password === 'joyouswoods2025' || 
+      password === 'joyouswoods2026'
+    ));
 
   if (!user || !isPasswordCorrect) {
-    return res.status(401).json({ error: 'Invalid credentials. Default is toys / toys' });
+    return res.status(401).json({ error: 'Invalid credentials. Please verify your password.' });
   }
 
   const token = crypto.randomBytes(32).toString('hex');
@@ -464,7 +467,12 @@ app.post('/api/auth/change-password', requireAdmin, (req, res) => {
   const user = db.users.find(u => u.id === session.userId);
   if (!user) return res.status(404).json({ error: 'User not found' });
 
-  if (oldPassword && hashPassword(oldPassword) !== user.password_hash && oldPassword !== 'toys' && oldPassword !== 'joyouswoods2026') {
+  const isDefaultHash = !user.password_hash || user.password_hash === DEFAULT_ADMIN_PASS_HASH;
+  const isOldPasswordValid = 
+    hashPassword(oldPassword) === user.password_hash ||
+    (isDefaultHash && (oldPassword === 'toys' || oldPassword === 'toysn' || oldPassword === 'joyouswoods2026'));
+
+  if (!isOldPasswordValid) {
     return res.status(400).json({ error: 'Current password is incorrect' });
   }
 
@@ -748,6 +756,16 @@ app.post('/api/contact', (req, res) => {
 
 app.get('/api/contact', requireAdmin, (req, res) => {
   res.json(db.contact_messages);
+});
+
+// Download Project ZIP Endpoint
+app.get('/api/download-zip', (req, res) => {
+  const zipPath = path.join(process.cwd(), 'public', 'toysn-wood-website.zip');
+  if (fs.existsSync(zipPath)) {
+    res.download(zipPath, 'toysn-wood-website.zip');
+  } else {
+    res.status(404).json({ error: 'Zip file not found' });
+  }
 });
 
 // --------------------------------------------------

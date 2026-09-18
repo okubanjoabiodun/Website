@@ -20,7 +20,11 @@ import {
   Phone,
   MapPin,
   Clock,
-  Eye
+  Eye,
+  Download,
+  Lock,
+  EyeOff,
+  ShieldCheck
 } from 'lucide-react';
 import { 
   Product, 
@@ -78,6 +82,37 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [editingBaking, setEditingBaking] = useState<BakingProduct | null>(null);
   const [isNewBaking, setIsNewBaking] = useState(false);
   const [bakingForm, setBakingForm] = useState<Partial<BakingProduct>>({});
+
+  // Password change state
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPassword || newPassword.length < 6) {
+      showToast('New password must be at least 6 characters long', 'error');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      showToast('New password and confirmation do not match', 'error');
+      return;
+    }
+    setIsChangingPassword(true);
+    try {
+      await api.changePassword(oldPassword, newPassword, token);
+      showToast('Admin password changed successfully! Use your new password on your next login.', 'success');
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (err: any) {
+      showToast(err.message || 'Failed to change password. Please verify current password.', 'error');
+    } finally {
+      setIsChangingPassword(false);
+    }
+  };
 
   const handleManualRefresh = async () => {
     setIsRefreshing(true);
@@ -247,6 +282,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href="/api/download-zip"
+            download="toysn-wood-website.zip"
+            className="px-3 py-1.5 bg-[#B45309] hover:bg-[#D97706] text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+            title="Download full project source code as ZIP"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Download ZIP</span>
+          </a>
+
           <button
             onClick={handleManualRefresh}
             disabled={isRefreshing}
@@ -1206,6 +1251,114 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
 
               </form>
+
+              {/* Security & Admin Password Management */}
+              <div className="bg-[#292524] border border-[#38332E] rounded-3xl p-6 sm:p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#38332E]">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Security & Admin Password</h3>
+                    <p className="text-xs text-[#A8A29E]">Update your admin portal login password. The default password is <code className="bg-[#1C1917] px-1.5 py-0.5 rounded text-amber-400 font-mono">toys</code>.</p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleChangePassword} className="space-y-4 max-w-xl">
+                  <div>
+                    <label className="block text-xs font-bold text-[#D6D3D1] uppercase tracking-wider mb-2">
+                      Current Password
+                    </label>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        value={oldPassword}
+                        onChange={(e) => setOldPassword(e.target.value)}
+                        placeholder="Enter current password (default: toys)"
+                        required
+                        className="w-full bg-[#1C1917] border border-[#44403C] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F59E0B] pr-10"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#78716C] hover:text-white cursor-pointer"
+                        aria-label="Toggle password visibility"
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-[#D6D3D1] uppercase tracking-wider mb-2">
+                        New Password
+                      </label>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        placeholder="At least 6 characters"
+                        required
+                        minLength={6}
+                        className="w-full bg-[#1C1917] border border-[#44403C] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F59E0B]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#D6D3D1] uppercase tracking-wider mb-2">
+                        Confirm New Password
+                      </label>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="Re-type new password"
+                        required
+                        minLength={6}
+                        className="w-full bg-[#1C1917] border border-[#44403C] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F59E0B]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <p className="text-[11px] text-[#78716C]">
+                      Passwords are encrypted with SHA-256 and stored securely in your database.
+                    </p>
+                    <button
+                      type="submit"
+                      disabled={isChangingPassword}
+                      className="bg-[#D97706] hover:bg-[#B45309] disabled:bg-stone-600 text-white font-bold text-xs py-3 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap active:scale-95"
+                    >
+                      <Lock className="w-4 h-4" />
+                      {isChangingPassword ? 'Updating...' : 'Change Password'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Website Source Code Export (ZIP) */}
+              <div className="bg-[#292524] border border-[#38332E] rounded-3xl p-6 sm:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                      <Download className="w-5 h-5 text-amber-500" />
+                      Download Full Website Code (ZIP)
+                    </h3>
+                    <p className="text-xs text-[#A8A29E] mt-1 max-w-xl">
+                      Download the complete, self-contained project with all wood photos, components, and persistent database ready to deploy to Render, Railway, or any custom domain host.
+                    </p>
+                  </div>
+                  <a
+                    href="/api/download-zip"
+                    download="toysn-wood-website.zip"
+                    className="px-5 py-3 bg-[#B45309] hover:bg-[#D97706] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer whitespace-nowrap active:scale-95"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download ZIP (7.1 MB)
+                  </a>
+                </div>
+              </div>
             </div>
           )}
 
