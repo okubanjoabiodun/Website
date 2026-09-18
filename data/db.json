@@ -1,0 +1,227 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Toysn Admin",
+      "email": "toys",
+      "phone": "",
+      "role": "admin",
+      "password_hash": "97196e837eb711373ca1dac487a0557c8ae2d20bb8c916c0bb7ffc1754a90d74",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "u2",
+      "name": "Abiodun Okubanjo",
+      "email": "okubanjoabiodun891@gmail.com",
+      "phone": "",
+      "role": "admin",
+      "password_hash": "97196e837eb711373ca1dac487a0557c8ae2d20bb8c916c0bb7ffc1754a90d74",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-2x2",
+      "name": "2×2 Roofing Wood",
+      "category": "Roofing Wood",
+      "size": "2×2",
+      "description": "Quality treated timber for ceiling batten, nogging, and standard roofing frame support.",
+      "price": 2000,
+      "price_on_request": false,
+      "image_url": "/images/wood_timber_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-2x3",
+      "name": "2×3 Roofing Wood",
+      "category": "Roofing Wood",
+      "size": "2×3",
+      "description": "Prime hardwood timber ideal for roof purlins, ceiling joists, and sturdy structural framing.",
+      "price": 3000,
+      "price_on_request": false,
+      "image_url": "/images/wood_timber_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-2x4",
+      "name": "2×4 Roofing Timber",
+      "category": "Roofing Wood",
+      "size": "2×4",
+      "description": "Heavy duty rafters, roof trusses, and load-bearing construction framing timber.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/wood_timber_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-1x12",
+      "name": "1×12 Wood Planks",
+      "category": "Planks",
+      "size": "1×12",
+      "description": "High quality 1×12 (1*12) timber planks for concrete formwork, decking, fascia boards, scaffolding, and general carpentry.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/wood_planks_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-2x6",
+      "name": "2×6 Roofing Wood & Fascia",
+      "category": "Roofing Wood",
+      "size": "2×6",
+      "description": "Premium fascia timber, wide roof rafters, and heavy duty building wood planks.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/wood_timber_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-3x4",
+      "name": "3×4 Heavy Timber Wood",
+      "category": "Roofing Wood",
+      "size": "3×4",
+      "description": "High capacity tie beams, structural posts, and durable building wood for heavy span roofing.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/wood_timber_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-bansaw",
+      "name": "Precision Bansaw Wood",
+      "category": "Bansaw Wood",
+      "size": "Custom Specifications",
+      "description": "Machine precision-sawn bansaw wood cut to exact site dimensions with clean, even straight edges.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/bansaw_wood_timber.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-other-roofing",
+      "name": "Other Roofing Wood & Timber",
+      "category": "Other Timber",
+      "size": "Assorted Sizes",
+      "description": "Diverse species including Opepe, Mahogany, Abora, Afara and seasoned hardwood for unique projects.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/wood_planks_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "prod-bulk",
+      "name": "Bulk Construction Wood Orders",
+      "category": "Planks",
+      "size": "Truckload / Full Site Supply",
+      "description": "Complete wholesale wood supply for multi-storey buildings, estates, and contractor developments with site delivery.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "/images/wood_timber_stack.jpg",
+      "availability": "In Stock",
+      "created_at": "2026-09-09T19:17:11.314Z",
+      "updated_at": "2026-09-09T19:17:11.314Z"
+    }
+  ],
+  "baking_products": [
+    {
+      "id": "bake-1",
+      "name": "Custom Birthday Cakes",
+      "category": "Birthday Cakes",
+      "description": "Exquisitely crafted, moist and flavorful birthday cakes customized with your themes, colors and toppers.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
+      "availability": "Available",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "bake-2",
+      "name": "Grand Celebration Cakes",
+      "category": "Celebration Cakes",
+      "description": "Multi-tiered centerpiece cakes for graduations, anniversaries, promotions, and milestone festivities.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=800&q=80",
+      "availability": "Available",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "bake-3",
+      "name": "Royal Wedding & Event Cakes",
+      "category": "Wedding/Event Cakes",
+      "description": "Opulent traditional and white wedding cakes finished with fine fondant, sugar flowers and regal details.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "https://images.unsplash.com/photo-1562440499-64c9a111f713?auto=format&fit=crop&w=800&q=80",
+      "availability": "Order in Advance",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "bake-4",
+      "name": "Gourmet Pastries & Meat Pies",
+      "category": "Pastries",
+      "description": "Flaky meat pies, sausage rolls, donuts, croissants and savory snacks baked golden brown and fresh daily.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=800&q=80",
+      "availability": "Available",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "bake-5",
+      "name": "Artisanal Custom Cakes",
+      "category": "Custom Cakes",
+      "description": "Unique custom shape sculptures, character cakes, and bespoke edible design work baked fresh with love.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=800&q=80",
+      "availability": "Available",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    },
+    {
+      "id": "bake-6",
+      "name": "Specialty Desserts & Cupcakes",
+      "category": "Other Baked Items",
+      "description": "Boxed luxury cupcakes, cookies, brownies and dessert platters for parties and sweet gifting.",
+      "price": null,
+      "price_on_request": true,
+      "image_url": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=800&q=80",
+      "availability": "Available",
+      "created_at": "2026-09-09T19:17:11.314Z"
+    }
+  ],
+  "orders": [],
+  "quote_requests": [],
+  "baking_orders": [],
+  "contact_messages": [],
+  "business_settings": {
+    "id": "settings-1",
+    "business_name": "Toysn Wood and Super Cakes",
+    "phone": "+234 904 684 3759",
+    "whatsapp": "+234 904 684 3759",
+    "email": "toysnwoodandcakes@gmail.com",
+    "address": "Lagos, Nigeria",
+    "opening_hours": "Monday - Saturday: 7:00 AM - 6:30 PM",
+    "facebook": "https://facebook.com/Okubanjooluwatosin",
+    "instagram": "https://instagram.com/Okubanjooluwatosin",
+    "tiktok": "https://tiktok.com/@Okubanjooluwatosin",
+    "business_description": "Dealer in all kinds of roofing wood, planks and building timber, plus artisanal custom cakes and catering bakes by Super Cakes. We provide quality materials and reliable delivery.",
+    "delivery_information": "We deliver wood and materials directly to your site or preferred location. Orders are confirmed and dispatched promptly with reliable logistics."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Toysn Wood and Super Cakes",
+  "description": "Toysn Wood and Super Cakes supplies quality roofing wood, planks, bansaw wood, building timber, artisanal custom cakes and fresh bakes, with reliable delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
